@@ -1,0 +1,182 @@
+:root {
+  --deo-primary: #4caf50;
+  --deo-secondary: #ffc107;
+  --deo-accent: #2196f3;
+  --deo-bg: #ffffff;
+  --deo-bg-sidebar: #f8f8fa;
+  --deo-bg-panel: #f7fff8;
+  --deo-border: #eeeeee;
+  --deo-text: #202126;
+  --deo-text-secondary: #757575;
+}
+
+.deo-theme-light {
+  background: var(--deo-bg);
+  color: var(--deo-text);
+  min-height: 100vh;
+  display: flex;
+  font-family: 'Inter', 'Roboto', 'Arial', sans-serif;
+}
+
+.deo-root {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  background: var(--deo-bg);
+}
+
+.deo-clues-sidebar {
+  width: 240px;
+  background: var(--deo-bg-sidebar);
+  border-right: 1.5px solid var(--deo-border);
+  padding: 0 18px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 100vh;
+}
+
+.deo-sidebar-title {
+  color: var(--deo-primary);
+  font-size: 1.3rem;
+  margin: 32px 0 10px 0;
+  letter-spacing: 0.8px;
+  font-weight: 700;
+  text-align: left;
+  border-bottom: 1.5px solid var(--deo-secondary);
+  padding-bottom: 6px;
+}
+.deo-clues-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.deo-clue {
+  background: var(--deo-bg-panel);
+  color: var(--deo-text);
+  border-left: 4px solid var(--deo-accent);
+  margin: 14px 0;
+  padding: 10px 13px;
+  border-radius: 6px;
+  transition: box-shadow 0.2s;
+  font-size: 1rem;
+  box-shadow: 0 1px 7px 0 rgba(33, 150, 243, 0.07);
+}
+.deo-clue-empty {
+  color: var(--deo-text-secondary);
+  margin: 32px 0 0 3px;
+  font-style: italic;
+}
+
+.deo-main-area {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 0;
+  background: var(--deo-bg);
+  min-height: 100vh;
+  padding: 0 0 0 0;
+}
+
+.deo-main-controls {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  padding: 30px 38px 12px 38px;
+  background: var(--deo-bg);
+  border-bottom: 1.5px solid var(--deo-border);
+}
+
+.deo-progress-tracker {
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.deo-progress-bar {
+  accent-color: var(--deo-primary);
+  width: 120px;
+  height: 9px;
+}
+
+.deo-timer {
+  background: var(--deo-secondary);
+  color: var(--deo-text);
+  font-weight: bold;
+  border-radius: 16px;
+  padding: 7px 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1.1rem;
+  box-shadow: 0 1px 4px 0 rgba(33, 150, 243, 0.04);
+}
+
+.deo-timer-icon {
+  font-size: 1.3em;
+}
+
+.deo-timer-value {
+  font-variant-numeric: tabular-nums;
+}
+
+.deo-puzzle-interface {
+  flex: 1 1 auto;
+  padding: 46px 38px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  background: var(--deo-bg-panel);
+}
+.deo-main-title {
+  color: var(--deo-accent);
+  font-size: 2.1rem;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  letter-spacing: .5px;
+}
+.deo-puzzle-desc {
+  color: var(--deo-text-secondary);
+  font-size: 1.11rem;
+  margin-bottom: 12px;
+  font-style: italic;
+  white-space: pre-line;
+}
+.deo-puzzle-form {
+  margin-top: 1.2em;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.deo-input {
+  font-size: 1rem;
+  border: 2px solid var(--deo-accent);
+  border-radius: 4px;
+  padding: 7px 15px;
+  outline: none;
+  min-width: 210px;
+  background: #fff;
+  color: var(--deo-text);
+  transition: border-color 0.2s;
+}
+.deo-input:focus {
+  border-color: var(--deo-primary);
+}
+.deo-submit-btn {
+  background: var(--deo-primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 15px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 1px 7px 0 rgba(76, 175, 80, 0.10);
+  transition: background 0.2s;
+}
+.deo-submit-btn:hover {
+  background: #43a047;
+}
