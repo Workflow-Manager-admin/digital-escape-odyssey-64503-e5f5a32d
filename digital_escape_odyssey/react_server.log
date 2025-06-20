@@ -7,95 +7,61 @@
 <i> [webpack-dev-server] On Your Network (IPv4): http://172.17.0.2:3000/
 <i> [webpack-dev-server] Content not from webpack is served from './public' directory
 Injecting EditorRootWrapper import: ../.ve/EditorRootWrapper
-asset bundle.js 1.43 MiB [emitted] (name: main)
+asset bundle.js 1.46 MiB [emitted] (name: main)
 asset index.html 1.98 KiB [emitted]
 runtime modules 27.5 KiB 14 modules
-modules by path ./node_modules/ 1.24 MiB 31 modules
-modules by path ./src/ 36.8 KiB
-  modules by path ./src/*.css 16 KiB 6 modules
-  modules by path ./src/*.js 20.8 KiB
-    ./src/index.js 530 bytes [built] [code generated]
-    + 3 modules
-modules by path ./.ve/ 15.1 KiB
-  modules by path ./.ve/*.js 10.6 KiB 2 modules
-  modules by path ./.ve/*.css 2.93 KiB
-    ./.ve/EditorOverlay.css 2.25 KiB [built] [code generated]
-    ./node_modules/css-loader/dist/cjs.js!./.ve/EditorOverlay.css 697 bytes [built] [code generated]
-  ./.ve/EditorOverlay.jsx 1.58 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 1328 ms
-assets by status 1.98 KiB [cached] 1 asset
-assets by path *.js 1.51 MiB
-  asset bundle.js 1.46 MiB [emitted] (name: main)
-  asset main.d9899cff5239a094555b.hot-update.js 49.7 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.d9899cff5239a094555b.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.51 MiB = bundle.js 1.46 MiB main.d9899cff5239a094555b.hot-update.js 49.7 KiB
-cached modules 1.27 MiB [cached] 45 modules
-runtime modules 27.5 KiB 14 modules
-javascript modules 34.3 KiB
-  modules by path ./src/*.js 27.7 KiB
-    ./src/DigitalEscapeOdysseyMain.js 17.3 KiB [built] [code generated]
-    ./src/EchoAI.js 10.4 KiB [built] [code generated]
-  modules by path ./src/*.css 6.64 KiB
-    ./src/EchoAI.css 2.23 KiB [built] [code generated]
-    ./node_modules/css-loader/dist/cjs.js!./src/EchoAI.css 4.41 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 216 ms
+cacheable modules 1.31 MiB
+  modules by path ./node_modules/ 1.24 MiB 31 modules
+  modules by path ./src/ 55.7 KiB
+    modules by path ./src/*.css 22.7 KiB 8 modules
+    modules by path ./src/*.js 33 KiB
+      ./src/index.js 530 bytes [built] [code generated]
+      + 4 modules
+  modules by path ./.ve/ 15.1 KiB
+    modules by path ./.ve/*.js 10.6 KiB 2 modules
+    modules by path ./.ve/*.css 2.93 KiB
+      ./.ve/EditorOverlay.css 2.25 KiB [built] [code generated]
+      ./node_modules/css-loader/dist/cjs.js!./.ve/EditorOverlay.css 697 bytes [built] [code generated]
+    ./.ve/EditorOverlay.jsx 1.58 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 1490 ms
 assets by status 1.98 KiB [cached] 1 asset
 assets by path *.js 1.48 MiB
   asset bundle.js 1.46 MiB [emitted] (name: main)
-  asset main.fb52c7ef3c86c9e2ac28.hot-update.js 23.7 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.fb52c7ef3c86c9e2ac28.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.48 MiB = bundle.js 1.46 MiB main.fb52c7ef3c86c9e2ac28.hot-update.js 23.7 KiB
-cached modules 1.29 MiB [cached] 48 modules
+  asset main.61024241ccd24dd3eb8f.hot-update.js 25.4 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.61024241ccd24dd3eb8f.hot-update.json 58 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.48 MiB = bundle.js 1.46 MiB main.61024241ccd24dd3eb8f.hot-update.js 25.4 KiB
+cached modules 1.29 MiB [cached] 47 modules
 runtime modules 27.5 KiB 14 modules
-./src/DigitalEscapeOdysseyMain.js 17.6 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 83 ms
+./src/DigitalEscapeOdysseyMain.js 19.2 KiB [code generated]
+
+ERROR in ./src/DigitalEscapeOdysseyMain.js 5:0-56
+Module not found: Error: Can't resolve './FlashlightAROverlay' in '/home/kavia/workspace/code-generation/digital-escape-odyssey-64503-e5f5a32d/digital_escape_odyssey/src'
+resolve './FlashlightAROverlay' in '/home/kavia/workspace/code-generation/digital-escape-odyssey-64503-e5f5a32d/digital_escape_odyssey/src'
+  using description file: /home/kavia/workspace/code-generation/digital-escape-odyssey-64503-e5f5a32d/digital_escape_odyssey/package.json (relative path: ./src)
+    Field 'browser' doesn't contain a valid alias configuration
+    using description file: /home/kavia/workspace/code-generation/digital-escape-odyssey-64503-e5f5a32d/digital_escape_odyssey/package.json (relative path: ./src/FlashlightAROverlay)
+      no extension
+        Field 'browser' doesn't contain a valid alias configuration
+        /home/kavia/workspace/code-generation/digital-escape-odyssey-64503-e5f5a32d/digital_escape_odyssey/src/FlashlightAROverlay doesn't exist
+      .js
+        Field 'browser' doesn't contain a valid alias configuration
+        /home/kavia/workspace/code-generation/digital-escape-odyssey-64503-e5f5a32d/digital_escape_odyssey/src/FlashlightAROverlay.js doesn't exist
+      .jsx
+        Field 'browser' doesn't contain a valid alias configuration
+        /home/kavia/workspace/code-generation/digital-escape-odyssey-64503-e5f5a32d/digital_escape_odyssey/src/FlashlightAROverlay.jsx doesn't exist
+      as directory
+        /home/kavia/workspace/code-generation/digital-escape-odyssey-64503-e5f5a32d/digital_escape_odyssey/src/FlashlightAROverlay doesn't exist
+ @ ./src/App.js 3:0-66 9:27-51
+ @ ./src/index.js 5:0-24 11:32-35
+
+webpack 5.99.9 compiled with 1 error in 76 ms
 assets by status 1.98 KiB [cached] 1 asset
-assets by path *.js 1.48 MiB
-  asset bundle.js 1.46 MiB [emitted] (name: main)
-  asset main.7f076b3723cf39bf94ac.hot-update.js 23.9 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.7f076b3723cf39bf94ac.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.48 MiB = bundle.js 1.46 MiB main.7f076b3723cf39bf94ac.hot-update.js 23.9 KiB
-cached modules 1.29 MiB [cached] 48 modules
+assets by path *.js 1.47 MiB
+  asset bundle.js 1.45 MiB [emitted] (name: main)
+  asset main.09bb59f30ce05424dbe0.hot-update.js 22 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.09bb59f30ce05424dbe0.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.47 MiB = bundle.js 1.45 MiB main.09bb59f30ce05424dbe0.hot-update.js 22 KiB
+cached modules 1.29 MiB [cached] 47 modules
 runtime modules 27.5 KiB 14 modules
-./src/DigitalEscapeOdysseyMain.js 17.8 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 87 ms
-assets by status 1.98 KiB [cached] 1 asset
-assets by path *.js 1.48 MiB
-  asset bundle.js 1.46 MiB [emitted] (name: main)
-  asset main.b5fff8d421f172faa403.hot-update.js 24.4 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.b5fff8d421f172faa403.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.48 MiB = bundle.js 1.46 MiB main.b5fff8d421f172faa403.hot-update.js 24.4 KiB
-cached modules 1.29 MiB [cached] 48 modules
-runtime modules 27.5 KiB 14 modules
-./src/DigitalEscapeOdysseyMain.js 18.4 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 84 ms
-assets by status 1.98 KiB [cached] 1 asset
-assets by path *.js 1.48 MiB
-  asset bundle.js 1.46 MiB [emitted] (name: main)
-  asset main.4d860674aafde2eb83c4.hot-update.js 24.6 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.4d860674aafde2eb83c4.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.48 MiB = bundle.js 1.46 MiB main.4d860674aafde2eb83c4.hot-update.js 24.6 KiB
-cached modules 1.29 MiB [cached] 48 modules
-runtime modules 27.5 KiB 14 modules
-./src/DigitalEscapeOdysseyMain.js 18.5 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 82 ms
-assets by status 1.98 KiB [cached] 1 asset
-assets by path *.js 1.48 MiB
-  asset bundle.js 1.46 MiB [emitted] (name: main)
-  asset main.811413f03ebd7fc0813c.hot-update.js 25.3 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.811413f03ebd7fc0813c.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.48 MiB = bundle.js 1.46 MiB main.811413f03ebd7fc0813c.hot-update.js 25.3 KiB
-cached modules 1.29 MiB [cached] 48 modules
-runtime modules 27.5 KiB 14 modules
-./src/DigitalEscapeOdysseyMain.js 19.2 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 80 ms
-assets by status 1.98 KiB [cached] 1 asset
-assets by path *.js 1.48 MiB
-  asset bundle.js 1.46 MiB [emitted] (name: main)
-  asset main.a52b03a823227c6f968b.hot-update.js 25.3 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.a52b03a823227c6f968b.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.48 MiB = bundle.js 1.46 MiB main.a52b03a823227c6f968b.hot-update.js 25.3 KiB
-cached modules 1.29 MiB [cached] 48 modules
-runtime modules 27.5 KiB 14 modules
-./src/DigitalEscapeOdysseyMain.js 19.2 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 154 ms
+./src/DigitalEscapeOdysseyMain.js 16.6 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 146 ms

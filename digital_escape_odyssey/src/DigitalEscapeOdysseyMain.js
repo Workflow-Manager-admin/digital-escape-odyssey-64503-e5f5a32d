@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import "./DigitalEscapeOdysseyMain.css";
 import EchoAI from "./EchoAI";
 import "./EchoAI.css";
-import FlashlightAROverlay from "./FlashlightAROverlay";
 
 /**
  * Converts seconds to mm:ss
@@ -253,9 +252,6 @@ export default function DigitalEscapeOdysseyMain() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
   const [gameComplete, setGameComplete] = useState(false);
-  // Camera & AR feature states (Flashlight only):
-  const [showFlashlight, setShowFlashlight] = useState(false);
-
   // Track per-room answer history: { timeTaken, wrongAttempts, usedHint }
   const [answerHistory, setAnswerHistory] = useState(
     Array(TOTAL_LEVELS)
@@ -309,14 +305,6 @@ export default function DigitalEscapeOdysseyMain() {
   function handleInputChange(val) {
     setInputValue(val);
     setShowError(false);
-  }
-
-  // AR Flashlight
-  function handleStartFlashlight() {
-    setShowFlashlight(s => !s);
-  }
-  function handleFlashlightClose() {
-    setShowFlashlight(false);
   }
 
   function handleHintClick() {
@@ -399,69 +387,24 @@ export default function DigitalEscapeOdysseyMain() {
         <div className="deo-main-controls">
           <ProgressTracker level={currentRoomIdx} totalLevels={TOTAL_LEVELS} />
           <Timer timeLeftSecs={timeLeftSecs} />
-          {/* Camera/AR actions demo control (flashlight only) */}
-          <button
-            className="btn"
-            style={{
-              marginLeft: 8,
-              background: showFlashlight ? "#fe53bb" : "#23266d",
-              color: showFlashlight ? "#fff" : "#fffe",
-            }}
-            onClick={handleStartFlashlight}
-          >
-            {showFlashlight ? "Disable Flashlight" : "Activate Flashlight Mode"}
-          </button>
         </div>
-
-        {showFlashlight ? (
-          <FlashlightAROverlay enabled revealRadius={90}>
-            <div style={{ padding: 28, maxWidth: 420, position: "relative" }}>
-              {/* Sample secret message or puzzle — could use room-specific props */}
-              <div style={{ color: "#fffbe7", fontSize: "1.18em" }}>
-                <span style={{
-                  opacity: 0.22,
-                  fontStyle: "italic",
-                  fontWeight: 500
-                }}>
-                  "Shine your flashlight to reveal the invisible ink message..."<br />
-                  <span style={{
-                    color: "#f5d300",
-                    opacity: showFlashlight ? 0.98 : 0,
-                    fontWeight: 700,
-                  }}>
-                    Secret: THE CODE IS CYBER42!
-                  </span>
-                </span>
-              </div>
-              <button
-                className="btn"
-                style={{ marginTop: 20, background: "var(--deo-secondary)", color: "#fff" }}
-                onClick={handleFlashlightClose}
-              >
-                Close Flashlight AR
-              </button>
-            </div>
-          </FlashlightAROverlay>
-        ) : (
-          <PuzzleInterface
-            roomIdx={currentRoomIdx}
-            room={room}
-            inputValue={inputValue}
-            onInputChange={handleInputChange}
-            onSubmit={handlePuzzleSubmit}
-            showSuccess={showSuccess}
-            showError={showError}
-            revealedHints={revealedClues}
-            hintCount={hintCount}
-            onHintClick={handleHintClick}
-            canUseHint={canUseHint && !gameComplete && !showSuccess}
-            isLastRoom={currentRoomIdx === TOTAL_LEVELS - 1}
-            timeLeftSecs={timeLeftSecs}
-            gameComplete={gameComplete}
-            onNextRoom={handleNextRoom}
-          />
-        )}
-        {/* Stub for AR/Camera feature extension area */}
+        <PuzzleInterface
+          roomIdx={currentRoomIdx}
+          room={room}
+          inputValue={inputValue}
+          onInputChange={handleInputChange}
+          onSubmit={handlePuzzleSubmit}
+          showSuccess={showSuccess}
+          showError={showError}
+          revealedHints={revealedClues}
+          hintCount={hintCount}
+          onHintClick={handleHintClick}
+          canUseHint={canUseHint && !gameComplete && !showSuccess}
+          isLastRoom={currentRoomIdx === TOTAL_LEVELS - 1}
+          timeLeftSecs={timeLeftSecs}
+          gameComplete={gameComplete}
+          onNextRoom={handleNextRoom}
+        />
       </main>
       {/* ECHO AI SIDEBAR */}
       <EchoAI
