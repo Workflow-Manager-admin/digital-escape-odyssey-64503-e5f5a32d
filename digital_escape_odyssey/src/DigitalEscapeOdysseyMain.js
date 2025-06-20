@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./DigitalEscapeOdysseyMain.css";
+import EchoAI from "./EchoAI";
+import "./EchoAI.css";
 import FlashlightAROverlay from "./FlashlightAROverlay";
 
 /**
@@ -254,6 +256,18 @@ export default function DigitalEscapeOdysseyMain() {
   // Camera & AR feature states (Flashlight only):
   const [showFlashlight, setShowFlashlight] = useState(false);
 
+  // Track per-room answer history: { timeTaken, wrongAttempts, usedHint }
+  const [answerHistory, setAnswerHistory] = useState(
+    Array(TOTAL_LEVELS)
+      .fill()
+      .map(() => ({
+        wrongAttempts: 0,
+        usedHint: false,
+        timeTaken: 0,
+      }))
+  );
+  const answerStartTimeRef = useRef(Date.now());
+
   const TIMER_START_SECS = 300; // 5 minutes
   const [timeLeftSecs, setTimeLeftSecs] = useState(TIMER_START_SECS);
 
@@ -266,6 +280,11 @@ export default function DigitalEscapeOdysseyMain() {
     setShowSuccess(false);
     setShowError(false);
     setTimeLeftSecs(TIMER_START_SECS);
+
+    // Reset answer start time on room switch (for EchoAI time tracking)
+    answerStartTimeRef.current = Date.now();
+
+    // Reset any non-persistent states, but leave answerHistory
     // Clear timer interval for previous room!
     if (timerIntervalRef.current) {
       clearInterval(timerIntervalRef.current);
@@ -313,6 +332,12 @@ export default function DigitalEscapeOdysseyMain() {
       setHintCounts(arr =>
         arr.map((c, idx) => (idx === currentRoomIdx ? c + 1 : c))
       );
+      // Mark this room's usedHint as true in answerHistory (for EchoAI)
+      setAnswerHistory(arr =>
+        arr.map((entry, idx) =>
+          idx === currentRoomIdx ? { ...entry, usedHint: true } : entry
+        )
+      );
     }
   }
 
@@ -322,6 +347,16 @@ export default function DigitalEscapeOdysseyMain() {
     if (canonical(solution) === canonical(ROOMS[currentRoomIdx].puzzle.solution)) {
       setShowSuccess(true);
       setShowError(false);
+      // Calculate time taken to answer
+      const answeredAt = Date.now();
+      const secondsToAnswer = Math.round((answeredAt - answerStartTimeRef.current) / 1000);
+      setAnswerHistory(arr =>
+        arr.map((entry, idx) =>
+          idx === currentRoomIdx
+            ? { ...entry, timeTaken: entry.timeTaken || secondsToAnswer }
+            : entry
+        )
+      );
       setTimeout(() => {
         // If last room, complete game!
         if (currentRoomIdx === TOTAL_LEVELS - 1) {
@@ -331,6 +366,14 @@ export default function DigitalEscapeOdysseyMain() {
       }, 500);
     } else {
       setShowError(true);
+      // Increment wrongAttempts for this room for EchoAI tracking
+      setAnswerHistory(arr =>
+        arr.map((entry, idx) =>
+          idx === currentRoomIdx
+            ? { ...entry, wrongAttempts: (entry.wrongAttempts || 0) + 1 }
+            : entry
+        )
+      );
     }
   }
 
@@ -348,7 +391,7 @@ export default function DigitalEscapeOdysseyMain() {
   const canUseHint = hintCount < (room.hints.length);
 
   return (
-    <div className="deo-root deo-theme-cyberpunk">
+    <div className="deo-root deo-theme-cyberpunk" style={{ display: "flex", flexDirection: "row" }}>
       <CluesDisplay
         revealedClues={revealedClues}
       />
@@ -418,9 +461,23 @@ export default function DigitalEscapeOdysseyMain() {
             onNextRoom={handleNextRoom}
           />
         )}
-
         {/* Stub for AR/Camera feature extension area */}
       </main>
+      {/* ECHO AI SIDEBAR */}
+      <EchoAI
+        roomIdx={currentRoomIdx}
+        totalRooms={TOTAL_LEVELS}
+        puzzleTitle={room.puzzle.title}
+        timerSecs={timeLeftSecs}
+        timerTotal={300}
+        answerHistory={answerHistory}
+        hintCount={hintCount}
+        maxHints={room.hints.length}
+        onRequestHint={canUseHint && !showSuccess && !gameComplete ? handleHintClick : undefined}
+        puzzleHints={room.hints}
+        showSuccess={showSuccess}
+        gameComplete={gameComplete}
+      />
     </div>
   );
 }

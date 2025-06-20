@@ -1,0 +1,146 @@
+.echo-ai-panel {
+  min-width: 305px;
+  max-width: 360px;
+  background: linear-gradient(120deg, #1b1532 75%, #181928 100%);
+  border-left: 2.5px solid #08f7fe;
+  box-shadow: 0 0 30px #08f7fe25, 0 0 16px #fe53bb16;
+  color: var(--deo-neon-text, #eafcfb);
+  font-family: 'Share Tech Mono', 'Inconsolata', 'Orbitron', monospace, sans-serif;
+  padding: 0 0 0 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0;
+  position: relative;
+  z-index: 11;
+  transition: filter 0.08s;
+}
+
+.echo-ai-panel .echo-avatar-container {
+  margin: 28px 8px 28px 18px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+}
+.echo-avatar {
+  filter: drop-shadow(0 0 16px #08f7fe33) drop-shadow(0 0 5px #fe53bb19);
+  animation: echo-avatar-breathe 2.2s infinite alternate cubic-bezier(.6,0,.4,1);
+}
+@keyframes echo-avatar-breathe {
+  from { transform: scale(1) rotate(-2deg);}
+  to   { transform: scale(1.09) rotate(2deg);}
+}
+.glitch-eye { animation: echo-eye-glitch 3.5s infinite linear; }
+.glitch-eye2 { opacity: 0.7; animation: echo-eye-glitch2 1.2s infinite alternate; }
+@keyframes echo-eye-glitch {
+  0%, 100% { fill: #08f7fe; }
+  14% { fill: #fff; }
+  20% { fill: #fe53bb; }
+  23% { fill: #08f7fe;}
+}
+@keyframes echo-eye-glitch2 {
+  0% { stroke-width: 1.5;}
+  90% { stroke-width: 3.2; stroke: #fe53bb;}
+}
+
+.echo-message-area {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 22px;
+  min-height: 110px;
+  margin-bottom: 22px;
+  max-width: 265px;
+  background: linear-gradient(102deg, #131628 80%, #0d1324 110%);
+  border-radius: 9px 18px 12px 8px;
+  box-shadow: 0 0 9px #08f7fe33, 0 0 8px #fe53bb22 inset;
+  padding: 19px 17px 15px 21px;
+  position: relative;
+  overflow: visible;
+}
+.echo-message-main {
+  font-size: 1.09em;
+  line-height: 1.7;
+  min-height: 47px;
+  letter-spacing: 0.03em;
+  word-break: break-word;
+  text-shadow: 0 0 3.5px #08f7fe99, 0 0 16px #fe53bb47;
+  color: #eafcfb;
+  margin-bottom: 6px;
+}
+.echo-glitch-txt {
+  animation: glitchMove 0.10s linear alternate infinite;
+  font-style: italic;
+  font-family: inherit;
+}
+@keyframes glitchMove {
+  from { opacity: 0.96; }
+  to   { opacity: 0.62; transform: skewY(2deg);}
+}
+.echo-message-main .echo-glitch-txt {
+  /* Further emphasize individual glitch letters: */
+  text-shadow:
+    0 0 2.5px #08f7fe,
+    0 0 7px #f5d300,
+    0 0 12px #fe53bb,
+    1px 0 #fe53bb33;
+}
+
+.mood-calm .echo-message-main { color: #08f7fe; text-shadow: 0 0 14px #08f7fe, 0 0 4px #00ff9f55;}
+.mood-stressed .echo-message-main { color: #fe53bb; text-shadow: 0 0 10px #fe53bb, 0 0 10px #f5d30088;}
+.mood-neutral .echo-message-main { color: #00ff9f; text-shadow: 0 0 4px #00ff9f, 0 0 7px #08f7fe77;}
+
+.echo-meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 10px;
+  font-size: 0.85em;
+  opacity: 0.89;
+}
+.echo-room-indicator { color: #f5d300; font-weight: bold; letter-spacing: 0.03em;}
+.echo-mood-dot {
+  width: 13.5px; height: 13.5px;
+  border-radius: 41%;
+  display: inline-block;
+  margin-right: 4px;
+  box-shadow: 0 0 12px #08f7fe55, 0 0 18px #fe53bb19;
+  border: 2px solid #08f7fe50;
+  background: #1a2032;
+}
+.mood-calm .echo-mood-dot { background: #08f7fe;}
+.mood-stressed .echo-mood-dot { background: #fe53bb;}
+.mood-neutral .echo-mood-dot { background: #00ff9f;}
+
+.echo-hint-btn {
+  background: #181928;
+  border: 2px solid #08f7fe;
+  color: #08f7fe;
+  font-family: inherit;
+  font-size: 0.95em;
+  font-weight: 700;
+  border-radius: 6px;
+  margin-left: 15px;
+  cursor: pointer;
+  padding: 3px 13px;
+  box-shadow: 0 0 9px #08f7fe32;
+  transition: filter 0.14s, background 0.22s;
+}
+.echo-hint-btn:hover {
+  background: #18192b;
+  color: #fe53bb;
+  border: 2px solid #fe53bb;
+  filter: brightness(1.08) contrast(1.2);
+}
+
+.echo-glitch-active .echo-message-main {
+  animation: echoPanelGlitch 0.14s alternate 6;
+}
+@keyframes echoPanelGlitch {
+  0% { filter: blur(0.2px) brightness(1.03);}
+  5% { filter: blur(1.2px) brightness(0.7) hue-rotate(29deg);}
+  70% { filter: blur(0.1px);}
+  80% { filter: blur(1.2px);}
+  100% { filter: blur(0.2px);}
+}
