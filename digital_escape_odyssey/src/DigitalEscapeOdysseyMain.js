@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./DigitalEscapeOdysseyMain.css";
+import QRScanner from "./QRScanner";
+import FlashlightAROverlay from "./FlashlightAROverlay";
 
 /**
  * Converts seconds to mm:ss
@@ -250,6 +252,11 @@ export default function DigitalEscapeOdysseyMain() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
   const [gameComplete, setGameComplete] = useState(false);
+  // Camera & AR feature states:
+  const [showQRScanner, setShowQRScanner] = useState(false);
+  const [showFlashlight, setShowFlashlight] = useState(false);
+  const [bonusClue, setBonusClue] = useState(null);
+
   const TIMER_START_SECS = 300; // 5 minutes
   const [timeLeftSecs, setTimeLeftSecs] = useState(TIMER_START_SECS);
 
@@ -286,6 +293,27 @@ export default function DigitalEscapeOdysseyMain() {
   function handleInputChange(val) {
     setInputValue(val);
     setShowError(false);
+  }
+
+  // QR Scanner Bonus
+  function handleStartQRScan() {
+    setShowQRScanner(true);
+  }
+  function handleQRScanResult(resultText) {
+    // For demo: treat resultText as a bonus clue for the current room.
+    setShowQRScanner(false);
+    setBonusClue(resultText);
+  }
+  function handleQRScannerClose() {
+    setShowQRScanner(false);
+  }
+
+  // AR Flashlight
+  function handleStartFlashlight() {
+    setShowFlashlight(s => !s);
+  }
+  function handleFlashlightClose() {
+    setShowFlashlight(false);
   }
 
   function handleHintClick() {
@@ -337,29 +365,92 @@ export default function DigitalEscapeOdysseyMain() {
 
   return (
     <div className="deo-root deo-theme-cyberpunk">
-      <CluesDisplay revealedClues={revealedClues} />
+      <CluesDisplay
+        revealedClues={
+          bonusClue
+            ? [...revealedClues, `[BONUS] ${bonusClue}`]
+            : revealedClues
+        }
+      />
       <main className="deo-main-area">
         <div className="deo-main-controls">
           <ProgressTracker level={currentRoomIdx} totalLevels={TOTAL_LEVELS} />
           <Timer timeLeftSecs={timeLeftSecs} />
+          {/* Camera/AR actions demo controls */}
+          <button
+            className="btn"
+            style={{ marginLeft: 20, background: "#08f7fe", color: "#101e34" }}
+            onClick={handleStartQRScan}
+          >
+            Scan QR for Bonus Clue
+          </button>
+          <button
+            className="btn"
+            style={{
+              marginLeft: 8,
+              background: showFlashlight ? "#fe53bb" : "#23266d",
+              color: showFlashlight ? "#fff" : "#fffe",
+            }}
+            onClick={handleStartFlashlight}
+          >
+            {showFlashlight ? "Disable Flashlight" : "Activate Flashlight Mode"}
+          </button>
         </div>
-        <PuzzleInterface
-          roomIdx={currentRoomIdx}
-          room={room}
-          inputValue={inputValue}
-          onInputChange={handleInputChange}
-          onSubmit={handlePuzzleSubmit}
-          showSuccess={showSuccess}
-          showError={showError}
-          revealedHints={revealedClues}
-          hintCount={hintCount}
-          onHintClick={handleHintClick}
-          canUseHint={canUseHint && !gameComplete && !showSuccess}
-          isLastRoom={currentRoomIdx === TOTAL_LEVELS - 1}
-          timeLeftSecs={timeLeftSecs}
-          gameComplete={gameComplete}
-          onNextRoom={handleNextRoom}
-        />
+
+        {showFlashlight ? (
+          <FlashlightAROverlay enabled revealRadius={90}>
+            <div style={{ padding: 28, maxWidth: 420, position: "relative" }}>
+              {/* Sample secret message or puzzle — could use room-specific props */}
+              <div style={{ color: "#fffbe7", fontSize: "1.18em" }}>
+                <span style={{
+                  opacity: 0.22,
+                  fontStyle: "italic",
+                  fontWeight: 500
+                }}>
+                  "Shine your flashlight to reveal the invisible ink message..."<br />
+                  <span style={{
+                    color: "#f5d300",
+                    opacity: showFlashlight ? 0.98 : 0,
+                    fontWeight: 700,
+                  }}>
+                    Secret: THE CODE IS CYBER42!
+                  </span>
+                </span>
+              </div>
+              <button
+                className="btn"
+                style={{ marginTop: 20, background: "var(--deo-secondary)", color: "#fff" }}
+                onClick={handleFlashlightClose}
+              >
+                Close Flashlight AR
+              </button>
+            </div>
+          </FlashlightAROverlay>
+        ) : (
+          <PuzzleInterface
+            roomIdx={currentRoomIdx}
+            room={room}
+            inputValue={inputValue}
+            onInputChange={handleInputChange}
+            onSubmit={handlePuzzleSubmit}
+            showSuccess={showSuccess}
+            showError={showError}
+            revealedHints={revealedClues}
+            hintCount={hintCount}
+            onHintClick={handleHintClick}
+            canUseHint={canUseHint && !gameComplete && !showSuccess}
+            isLastRoom={currentRoomIdx === TOTAL_LEVELS - 1}
+            timeLeftSecs={timeLeftSecs}
+            gameComplete={gameComplete}
+            onNextRoom={handleNextRoom}
+          />
+        )}
+
+        {showQRScanner && (
+          <QRScanner onScan={handleQRScanResult} onClose={handleQRScannerClose} />
+        )}
+
+        {/* Stub for AR/QR extension: you can add contextually per-room QR/AR logic here */}
       </main>
     </div>
   );
