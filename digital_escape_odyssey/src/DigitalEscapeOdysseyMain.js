@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./DigitalEscapeOdysseyMain.css";
-import QRScanner from "./QRScanner";
 import FlashlightAROverlay from "./FlashlightAROverlay";
 
 /**
@@ -252,10 +251,8 @@ export default function DigitalEscapeOdysseyMain() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
   const [gameComplete, setGameComplete] = useState(false);
-  // Camera & AR feature states:
-  const [showQRScanner, setShowQRScanner] = useState(false);
+  // Camera & AR feature states (Flashlight only):
   const [showFlashlight, setShowFlashlight] = useState(false);
-  const [bonusClue, setBonusClue] = useState(null);
 
   const TIMER_START_SECS = 300; // 5 minutes
   const [timeLeftSecs, setTimeLeftSecs] = useState(TIMER_START_SECS);
@@ -293,19 +290,6 @@ export default function DigitalEscapeOdysseyMain() {
   function handleInputChange(val) {
     setInputValue(val);
     setShowError(false);
-  }
-
-  // QR Scanner Bonus
-  function handleStartQRScan() {
-    setShowQRScanner(true);
-  }
-  function handleQRScanResult(resultText) {
-    // For demo: treat resultText as a bonus clue for the current room.
-    setShowQRScanner(false);
-    setBonusClue(resultText);
-  }
-  function handleQRScannerClose() {
-    setShowQRScanner(false);
   }
 
   // AR Flashlight
@@ -366,24 +350,13 @@ export default function DigitalEscapeOdysseyMain() {
   return (
     <div className="deo-root deo-theme-cyberpunk">
       <CluesDisplay
-        revealedClues={
-          bonusClue
-            ? [...revealedClues, `[BONUS] ${bonusClue}`]
-            : revealedClues
-        }
+        revealedClues={revealedClues}
       />
       <main className="deo-main-area">
         <div className="deo-main-controls">
           <ProgressTracker level={currentRoomIdx} totalLevels={TOTAL_LEVELS} />
           <Timer timeLeftSecs={timeLeftSecs} />
-          {/* Camera/AR actions demo controls */}
-          <button
-            className="btn"
-            style={{ marginLeft: 20, background: "#08f7fe", color: "#101e34" }}
-            onClick={handleStartQRScan}
-          >
-            Scan QR for Bonus Clue
-          </button>
+          {/* Camera/AR actions demo control (flashlight only) */}
           <button
             className="btn"
             style={{
@@ -446,11 +419,7 @@ export default function DigitalEscapeOdysseyMain() {
           />
         )}
 
-        {showQRScanner && (
-          <QRScanner onScan={handleQRScanResult} onClose={handleQRScannerClose} />
-        )}
-
-        {/* Stub for AR/QR extension: you can add contextually per-room QR/AR logic here */}
+        {/* Stub for AR/Camera feature extension area */}
       </main>
     </div>
   );
