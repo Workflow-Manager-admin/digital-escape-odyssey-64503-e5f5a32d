@@ -1,21 +1,28 @@
 :root {
-  --deo-primary: #4caf50;
-  --deo-secondary: #ffc107;
-  --deo-accent: #2196f3;
-  --deo-bg: #ffffff;
-  --deo-bg-sidebar: #f8f8fa;
-  --deo-bg-panel: #f7fff8;
-  --deo-border: #eeeeee;
-  --deo-text: #202126;
-  --deo-text-secondary: #757575;
+  /* Cyberpunk Neon Color Palette */
+  --deo-primary: #08f7fe;         /* Neon Cyan */
+  --deo-secondary: #fe53bb;       /* Neon Magenta */
+  --deo-accent: #f5d300;          /* Neon Yellow */
+  --deo-accent2: #00ff9f;         /* Neon Green */
+  --deo-bg: #12112b;              /* Rich deep dark */
+  --deo-bg-sidebar: #191842;
+  --deo-bg-panel: #181624;
+  --deo-border: #3c29c6;
+  --deo-neon-border: 0 0 12px #fe53bb, 0 0 24px #08f7fe;
+  --deo-neon-shadow: 0 0 12px #08f7fe, 0 0 24px #fe53bb;
+  --deo-neon-text: #fffbe7;
+  --deo-text: #e5eeff;            /* Light text */
+  --deo-text-secondary: #8f9bbb;
 }
 
-.deo-theme-light {
+.deo-theme-cyberpunk {
   background: var(--deo-bg);
   color: var(--deo-text);
   min-height: 100vh;
   display: flex;
-  font-family: 'Inter', 'Roboto', 'Arial', sans-serif;
+  font-family: 'Orbitron', 'Share Tech Mono', 'Inter', 'Roboto', 'Arial', sans-serif;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 3px #0ff2, 0 0 8px #fe53bb3a;
 }
 
 .deo-root {
@@ -28,7 +35,8 @@
 .deo-clues-sidebar {
   width: 240px;
   background: var(--deo-bg-sidebar);
-  border-right: 1.5px solid var(--deo-border);
+  border-right: none;
+  box-shadow: 2px 0 22px 2px #2b218a80;
   padding: 0 18px;
   box-sizing: border-box;
   display: flex;
@@ -38,35 +46,50 @@
 }
 
 .deo-sidebar-title {
-  color: var(--deo-primary);
+  color: var(--deo-secondary);
   font-size: 1.3rem;
   margin: 32px 0 10px 0;
-  letter-spacing: 0.8px;
-  font-weight: 700;
+  letter-spacing: 1.5px;
+  font-weight: 900;
   text-align: left;
-  border-bottom: 1.5px solid var(--deo-secondary);
-  padding-bottom: 6px;
+  border-bottom: 2px solid var(--deo-secondary);
+  padding-bottom: 8px;
+  text-shadow: 0 0 7px var(--deo-secondary), 0 0 20px var(--deo-secondary);
+  text-transform: uppercase;
 }
+
 .deo-clues-list {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 .deo-clue {
-  background: var(--deo-bg-panel);
+  background: linear-gradient(90deg, #1e1548 70%, #08f7fe30);
   color: var(--deo-text);
-  border-left: 4px solid var(--deo-accent);
-  margin: 14px 0;
-  padding: 10px 13px;
-  border-radius: 6px;
+  border-left: 4px solid var(--deo-primary);
+  margin: 16px 0;
+  padding: 10px 15px 10px 15px;
+  border-radius: 7px;
   transition: box-shadow 0.2s;
-  font-size: 1rem;
-  box-shadow: 0 1px 7px 0 rgba(33, 150, 243, 0.07);
+  font-size: 1.03rem;
+  box-shadow: 0 0 15px #08f7fe3b, 0 0 7px #fe53bb30;
+  font-family: inherit;
+  letter-spacing: 0.02em;
+  text-shadow: 0 0 2px #fffbe799, 0 0 10px #08f7fe44;
 }
+.deo-clue:before {
+  content: "◆";
+  margin-right: 9px;
+  color: var(--deo-secondary);
+  text-shadow: 0 0 8px var(--deo-secondary);
+  font-size: 0.9em;
+}
+
 .deo-clue-empty {
   color: var(--deo-text-secondary);
   margin: 32px 0 0 3px;
   font-style: italic;
+  opacity: 0.7;
 }
 
 .deo-main-area {
@@ -75,7 +98,7 @@
   flex-direction: column;
   align-items: stretch;
   min-width: 0;
-  background: var(--deo-bg);
+  background: linear-gradient(120deg, #181624 80%, #191842 110%, #23266d 160%);
   min-height: 100vh;
   padding: 0 0 0 0;
 }
@@ -86,40 +109,56 @@
   align-items: center;
   padding: 30px 38px 12px 38px;
   background: var(--deo-bg);
-  border-bottom: 1.5px solid var(--deo-border);
+  border-bottom: none;
+  box-shadow: 0 2px 20px #191842a4;
 }
 
 .deo-progress-tracker {
-  font-size: 1.1rem;
+  font-size: 1.06rem;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 8px;
+  color: var(--deo-accent2);
+  font-family: inherit;
+  font-weight: 600;
+  text-shadow: 0 0 5px var(--deo-accent2), 0 0 15px #0ff2;
 }
+
 .deo-progress-bar {
   accent-color: var(--deo-primary);
   width: 120px;
-  height: 9px;
+  height: 10px;
+  border-radius: 3px;
+  box-shadow: 0 0 9px var(--deo-primary);
+  background: #1b1439;
+  outline: 1.5px solid var(--deo-border);
 }
 
 .deo-timer {
   background: var(--deo-secondary);
-  color: var(--deo-text);
+  color: #fff;
   font-weight: bold;
-  border-radius: 16px;
-  padding: 7px 18px;
+  border-radius: 17px;
+  padding: 9px 20px;
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 1.1rem;
-  box-shadow: 0 1px 4px 0 rgba(33, 150, 243, 0.04);
+  gap: 10px;
+  font-size: 1.16rem;
+  box-shadow: 0 0 15px #fe53bb, 0 0 5px #fee3fe;
+  border: 2px solid var(--deo-secondary);
+  text-shadow: 0 0 6px var(--deo-secondary);
 }
 
 .deo-timer-icon {
-  font-size: 1.3em;
+  font-size: 1.4em;
+  color: var(--deo-accent);
+  text-shadow: 0 0 8px var(--deo-accent), 0 0 17px #fe53bb;
 }
 
 .deo-timer-value {
   font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: 0.09em;
 }
 
 .deo-puzzle-interface {
@@ -129,54 +168,82 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
-  background: var(--deo-bg-panel);
+  background: linear-gradient(120deg, #181624 80%, #1ea5b5 190%);
+  border: 2px solid var(--deo-accent2);
+  border-radius: 15px 25px 18px 12px;
+  margin: 40px 32px 32px 0;
+  box-shadow: 0 0 44px #00ff9f49, 0 0 20px #08f7fe44;
 }
+
 .deo-main-title {
-  color: var(--deo-accent);
+  color: var(--deo-secondary);
   font-size: 2.1rem;
   font-weight: 700;
-  margin: 0 0 4px 0;
-  letter-spacing: .5px;
+  margin: 0 0 7px 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 0 12px var(--deo-secondary), 0 0 24px var(--deo-secondary);
+  font-family: inherit;
 }
+
 .deo-puzzle-desc {
-  color: var(--deo-text-secondary);
+  color: var(--deo-accent);
   font-size: 1.11rem;
   margin-bottom: 12px;
   font-style: italic;
   white-space: pre-line;
+  text-shadow: 0 0 3px var(--deo-accent);
+  opacity: 0.89;
 }
+
 .deo-puzzle-form {
   margin-top: 1.2em;
   display: flex;
-  gap: 10px;
+  gap: 12px;
   align-items: center;
 }
+
 .deo-input {
-  font-size: 1rem;
-  border: 2px solid var(--deo-accent);
+  font-size: 1.08rem;
+  border: 2.5px solid var(--deo-primary);
   border-radius: 4px;
-  padding: 7px 15px;
+  padding: 8px 18px;
   outline: none;
   min-width: 210px;
-  background: #fff;
-  color: var(--deo-text);
-  transition: border-color 0.2s;
+  background: #140e2e;
+  color: var(--deo-accent2);
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 0 10px var(--deo-primary);
+  transition: border-color 0.16s, box-shadow 0.22s, background 0.19s;
+  text-shadow: 0 0 6px var(--deo-primary);
 }
 .deo-input:focus {
-  border-color: var(--deo-primary);
+  border-color: var(--deo-secondary);
+  box-shadow: 0 0 17px var(--deo-secondary);
+  background: #1f1342;
+  color: #fff;
 }
+
 .deo-submit-btn {
   background: var(--deo-primary);
-  color: #fff;
-  border: none;
+  color: #23266d;
+  border: 2px solid var(--deo-secondary);
   border-radius: 4px;
-  padding: 8px 15px;
-  font-weight: 600;
-  font-size: 1rem;
+  padding: 9px 19px;
+  font-weight: 900;
+  font-family: inherit;
+  font-size: 1.01rem;
   cursor: pointer;
-  box-shadow: 0 1px 7px 0 rgba(76, 175, 80, 0.10);
-  transition: background 0.2s;
+  letter-spacing: 1px;
+  box-shadow: 0 0 13px #08f7fe, 0 0 4px #00ff9f70;
+  transition: background 0.17s, color 0.15s, box-shadow 0.13s, border 0.2s;
+  text-shadow: 0 0 4px #fffbe7;
 }
 .deo-submit-btn:hover {
-  background: #43a047;
+  background: var(--deo-secondary);
+  color: #fff;
+  border: 2.5px solid var(--deo-primary);
+  box-shadow: 0 0 33px #fe53bb, 0 0 10px #f5d300a0;
 }

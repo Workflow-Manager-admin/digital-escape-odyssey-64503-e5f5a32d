@@ -103,7 +103,7 @@ export default function DigitalEscapeOdysseyMain() {
   }
 
   return (
-    <div className="deo-root deo-theme-light">
+    <div className="deo-root deo-theme-cyberpunk">
       <CluesDisplay clues={clues} />
       <main className="deo-main-area">
         <div className="deo-main-controls">
